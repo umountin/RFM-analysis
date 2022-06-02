@@ -13,12 +13,12 @@
   - analysis - производится подготовка и размещение разработанной витрины
 
 В схеме production есть следующие таблицы:
-- users
-- products
-- orderitems
-- orders
-- orderstatuslog
-- orderstatuses
+1. products
+2. orderitems
+3. orders
+4. orderstatuslog
+5. orderstatuses
+6. users
 
 Витрина должна состоять из таких полей:
 - user_id
