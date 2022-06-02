@@ -33,4 +33,4 @@
 Для расчета метрик нам потребуется следующие данные:
 - recency - user_id, order_ts
 - frequency	- user_id, order_id
-- monetary_value - user_id, payment
+- monetary_value - user_id, cost
