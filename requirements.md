@@ -13,24 +13,24 @@
   - analysis - производится подготовка и размещение разработанной витрины
 
 В схеме production есть следующие таблицы:
-  users
-  products
-  orderitems
-  orders
-  orderstatuslog
-  orderstatuses
+- users
+- products
+- orderitems
+- orders
+- orderstatuslog
+- orderstatuses
 
 Витрина должна состоять из таких полей:
-  user_id
-  recency (число от 1 до 5)
-  frequency (число от 1 до 5)
-  monetary_value (число от 1 до 5)
+- user_id
+- recency (число от 1 до 5)
+- frequency (число от 1 до 5)
+- monetary_value (число от 1 до 5)
 
 Для формирования витрины нам будет достаточно сформировать запросы к таблице orders, к которым нужно будет применить фильтры по колонкам:
-  status = 4
-  CAST(DATE_TRUNC('Year', order_ts) AS date) = 2021
+- status = 4
+- CAST(DATE_TRUNC('Year', order_ts) AS date) = 2021
   
 Для расчета метрик нам потребуется следующие данные:
-  recency - user_id, order_ts
-  frequency	- user_id, order_id
-	monetary_value - user_id, payment
+- recency - user_id, order_ts
+- frequency	- user_id, order_id
+- monetary_value - user_id, payment
