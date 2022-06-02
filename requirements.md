@@ -28,7 +28,7 @@
 
 Для формирования витрины нам будет достаточно сформировать запросы к таблице orders, к которым нужно будет применить фильтры по колонкам:
 - status = 4
-- CAST(DATE_TRUNC('Year', order_ts) AS date) = 2021
+- CAST(DATE_TRUNC('year', orders.order_ts) AS date) > '2021-01-01'
   
 Для расчета метрик нам потребуется следующие данные:
 - recency - user_id, order_ts
