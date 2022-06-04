@@ -1,10 +1,5 @@
 INSERT INTO analysis.tmp_rfm_monetary_value (user_id, monetary_value)
-WITH u AS (
-	SELECT 
-		DISTINCT id AS user_id
-	FROM analysis.users
-),
-q AS (
+WITH q AS (
 	SELECT 
 		o.user_id,
 		SUM(o.cost) AS ld
@@ -16,5 +11,5 @@ q AS (
 SELECT
 	u.user_id,
 	ntile(5) OVER (ORDER BY COALESCE(q.ld,0)) AS monetary_value
-FROM u
+FROM analysis.users u
 LEFT JOIN q ON u.user_id = q.user_id;
