@@ -2,25 +2,17 @@ CREATE OR REPLACE VIEW analysis.orders AS
 WITH q AS (
 	SELECT * FROM production.orders
 ),
-ld AS (
-	SELECT
-		l.order_id,
-		MAX(l.dttm) AS last_date
-	FROM production.OrderStatusLog l	
-	GROUP BY l.order_id 
-	ORDER BY l.order_id 
-),
 s AS (
 	SELECT
 		l.order_id,
-		l.status_id AS status,
-		l.dttm
+		l.status_id,
+		ROW_NUMBER() OVER (PARTITION BY l.order_id, l.status_id ORDER BY l.dttm DESC) last_row
 	FROM production.OrderStatusLog l
-	ORDER BY l.order_id 
 )
 SELECT
 	q.*,
-	s.status
-FROM ld
-LEFT JOIN s ON s.order_id = ld.order_id AND s.dttm = ld.last_date
-RIGHT JOIN q ON q.order_id = ld.order_id;
+	s.status_id AS status
+FROM q
+LEFT JOIN s ON s.order_id = q.order_id
+WHERE s.last_row = 1
+ORDER BY q.order_id;
