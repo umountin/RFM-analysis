@@ -24,9 +24,9 @@
 - monetary_value (число от 1 до 5)
   
 Для расчета метрик нам потребуется следующие данные:
-- recency - user_id, order_ts
-- frequency	- user_id, order_id
-- monetary_value - user_id, cost
+- recency - представление analysis.orders, поля: user_id, order_ts
+- frequency	- представление analysis.orders, поля: user_id, order_id
+- monetary_value - представление analysis.orders, поля: user_id, cost
 
 Правила сегментации RFM:
 1. Присвойте каждому клиенту три значения — значение фактора Recency, значение фактора Frequency и значение фактора Monetary:
