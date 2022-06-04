@@ -1,10 +1,5 @@
 INSERT INTO analysis.tmp_rfm_frequency (user_id, frequency)
-WITH u AS (
-	SELECT 
-		DISTINCT id AS user_id
-	FROM analysis.users
-),
-q AS (
+WITH q AS (
 	SELECT 
 		o.user_id,
 		COUNT(o.order_id) AS ld
@@ -16,5 +11,5 @@ q AS (
 SELECT
 	u.user_id,
 	ntile(5) OVER (ORDER BY COALESCE(q.ld,0)) AS frequency
-FROM u
+FROM users u
 LEFT JOIN q ON u.user_id = q.user_id;
