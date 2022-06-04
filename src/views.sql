@@ -1,10 +1,10 @@
-CREATE VIEW analysis.orderitems AS
+CREATE OR REPLACE VIEW analysis.orderitems AS
 SELECT * FROM production.orderitems;
-CREATE VIEW analysis.orders AS
+CREATE OR REPLACE VIEW analysis.orders AS
 SELECT * FROM production.orders;
-CREATE VIEW analysis.orderstatuses AS
+CREATE OR REPLACE VIEW analysis.orderstatuses AS
 SELECT * FROM production.orderstatuses;
-CREATE VIEW analysis.users AS
+CREATE OR REPLACE VIEW analysis.users AS
 SELECT * FROM production.users;
-CREATE VIEW analysis.products AS
+CREATE OR REPLACE VIEW analysis.products AS
 SELECT * FROM production.products;
