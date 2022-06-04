@@ -11,5 +11,5 @@ WITH q AS (
 SELECT
 	u.user_id,
 	ntile(5) OVER (ORDER BY COALESCE(q.ld,0)) AS frequency
-FROM users u
+FROM analysis.users u
 LEFT JOIN q ON u.user_id = q.user_id;
