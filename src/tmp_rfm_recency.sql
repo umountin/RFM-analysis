@@ -1,10 +1,5 @@
 INSERT INTO analysis.tmp_rfm_recency (user_id, recency)
-WITH u AS (
-	SELECT 
-		DISTINCT id AS user_id
-	FROM analysis.users
-),
-q AS (
+WITH q AS (
 	SELECT 
 		o.user_id,
 		MAX(o.order_ts) AS ld
@@ -16,5 +11,5 @@ q AS (
 SELECT
 	u.user_id,
 	ntile(5) OVER (ORDER BY COALESCE(q.ld,'1900-01-01')) AS recency
-FROM u
+FROM analysis.users u
 LEFT JOIN q ON u.user_id = q.user_id;
